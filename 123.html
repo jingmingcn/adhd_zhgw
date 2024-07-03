@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+  <!-- Include dat.GUI library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+</head>
+<body>
+
+<div id="brain2_line_GuiContainer"></div>
+<p id="selectedDataset">Selected Dataset: </p> <!-- 添加用于显示选择的数据集的元素 -->
+
+<script>
+  // Define preferences object with initial values
+  var preferences = {
+    datasetselect: 'ADHD' // Initial value for datasetselect
+  };
+
+  // Function to update query string parameter
+  function updateQueryStringParameter(uri, key, value) {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+      return uri.replace(re, '$1' + key + "=" + value + '$2');
+    } else {
+      return uri + separator + key + "=" + value;
+    }
+  }
+
+  // Create a GUI object
+  var gui = new dat.GUI();
+  var brain2_line_GuiContainer = document.getElementById('brain2_line_GuiContainer');
+  brain2_line_GuiContainer.appendChild(gui.domElement);
+
+  // Create a folder named 'Select Dataset'
+  var select_folder = gui.addFolder('Select Dataset');
+
+  // Add a dropdown option for dataset selection
+  select_folder.add(preferences, 'datasetselect', ['ADHD', 'ASD']).name('datasetselect').onFinishChange(function(value) {
+    // When the selection changes
+    var datasetselect = preferences.datasetselect; // Get the current value of datasetselect
+    if (value !== datasetselect) { // If the new value is different
+      var uri = window.location.href; // Get the current URL
+      document.getElementById('selectedDataset').innerText = "Selected Dataset: " + value; // Update the element to display the selected dataset
+      window.location.href = updateQueryStringParameter(uri, 'datasetselect', value); // Update and redirect
+    }
+  });
+</script>
+
+</body>
+</html>

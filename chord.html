@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Pairwise Interactive Circle Networks</title>
+  <link rel="stylesheet" href="css/chord.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+
+  <!--Load D3-->
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+  <!--Load jQuery for slider controls-->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <!--Load math.js for matrix manipulation-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
+  <!--for tip --> <!--no longer linked from website - now in depends -->
+  <script src="js/chord/d3-tip.js"></script>
+  <!--for fileupload-->
+  <script src="js/chord/filedrop-min.js"></script>
+</head>
+
+<body>
+<div class="allcontent">
+  <div class="box" id="controlpanel">
+    <table>
+
+      <tr class="header" style="display: none">
+        <th>Frequency</th>
+        <th>Metric</th>
+        <th>Prune Threshold & Display options</th>
+      </tr>
+
+      <tr>
+        <td class="slow subbox" style="display:none;">
+          <input type="text" id="freqrange" readonly style="border: none;" />
+          <div id="freqslider"></div>
+          <p></p>
+          <fieldset id="filezone">
+            <legend>Drop json matrix file</legend>
+            <span>Or click to browse for matrix file...</span>
+          </fieldset>
+        </td>
+
+        <td class="slow subbox" style="display:none;">
+          <select id = "opts">
+            <option value="AbsVal" selected>Absolute magnitude</option>
+            <option value="Angle">Magnitude + Angle</option>
+            <option value="Sign">Real + Sign</option>
+          </select>
+          <select id = "showSelf">
+            <option value="showSelf">Show self</option>
+            <option value="NOshowSelf" selected>Exclude self</option>
+          </select>
+          <p><input id="rerender" type="button" value="Re-slice matrix and render (slow)" /></p>
+
+
+          <form name="myform" onSubmit="return handleClick()">
+            <input name="Submit"  type="submit" value="Change number of bins " />
+            <input type="number" id="myVal"/>
+          </form>
+        </td>
+
+        <td class="right subbox">
+          <input type="text" id="prunerange" style="border: none;" />
+          <div id="pruneslider"></div>
+        </td>
+
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </div>
+
+  <div class="circlechart"></div>
+  <!--    <div class="barchart"></div>-->
+  <div class="histogram"></div>
+  <script src="js/chord/makecontrols.js"></script>
+  <script src="js/chord/plotchords.js"></script>
+  <script src="js/chord/bar.js"></script>
+  <script src="js/chord/filedroppage.js"></script>
+  <script src="js/chord/histogram.js"></script>
+
+
+  <script>
+    // Load files and start
+    d3_queue.queue()
+            .defer(d3.csv, "data/labels.csv")
+            .defer(d3.json, "data/ASDtdc.txt")
+            .await(initializeRender);
+  </script>
+</div>
+</body>
+
+</html>

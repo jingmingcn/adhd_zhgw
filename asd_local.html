@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Plot</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    .grid-item {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      text-align: center;
+      line-height: 50px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="grid"></div>
+<div id="grid1"></div>
+
+<script>
+  // Function to create grid plot
+  function createGridPlot(data) {
+    // Define colorscale for heatmap
+    var colorscale = [
+      [0, '#FFFFFF'], // white
+      [1, '#0000FF']  // blue
+    ];
+
+    // Create trace for heatmap
+    var trace = {
+      z: data,
+      type: 'heatmap',
+      colorscale: colorscale,
+      hoverongaps: false
+    };
+
+    // Define layout for plot
+    var layout = {
+      title: 'ASD',
+      hovermode: 'closest',
+      width:500,
+      height:300,
+    };
+
+    // Create plot
+    Plotly.newPlot('grid', [trace], layout);
+  }
+
+  // Sample data
+  var data = [
+    [0.982366071, 1, 0.912746975, 0.996354167, 0.996354167, 1, 0.97120952, 0.973435939, 0.948866758, 0.917295725, 1, 0.984738439, 0.969352522, 0.925595238, 0.908748196, 0.89683667],
+    [0.954901063, 0.966768716, 0.876990756, 0.94306944, 0.985021786, 0.986928105, 0.863241697, 0.914686394, 0.903440233, 0.787037037, 1, 0.983283406, 0.955362738, 0.835229277, 0.90088538, 0.881105777],
+    [0.97580223, 0.991966231, 0.921412302, 0.963138033, 0.986065723, 0.966523899, 0.912959571, 0.897734827, 0.907752124, 0.720061728, 0.975, 0.975677114, 0.984208384, 0.814770723, 0.816931217, 0.916968988],
+    [0.978937729, 0.98403977, 0.92762991, 0.978247943, 1, 1, 0.894132653, 0.93425067, 0.880612245, 0.727380952, 0.93351133, 0.97091361, 0.97985348, 0.78452381, 0.827267574, 0.93690833],
+    [0.89376979, 0.979835376, 0.893355778, 0.940121107, 0.981197848, 0.986125912, 0.886591765, 0.900988251, 0.892581183, 0.852777778, 0.942492821, 0.935058706, 0.950850569, 0.886483193, 0.906864273, 0.918101021],
+    [0.853089448, 0.893600288, 0.800044293, 0.90858266, 0.911476912, 0.927841515, 0.740869258, 0.713133661, 0.80483128, 0.430128205, 0.901572797, 0.919327568, 0.8255264, 0.684935897, 0.852770734, 0.846193337]
+  ];
+
+  // Create grid plot
+  createGridPlot(data);
+
+  // Function to create grid plot
+  function createGridPlot1(data) {
+    // Define colorscale for heatmap
+    var colorscale = [
+      [0, '#FFFFFF'], // white
+      [1, '#0000FF']  // blue
+    ];
+
+    // Create trace for heatmap
+    var trace = {
+      z: data,
+      type: 'heatmap',
+      colorscale: colorscale,
+      hoverongaps: false
+    };
+
+    // Define layout for plot
+    var layout = {
+      title: 'TDC',
+      hovermode: 'closest',
+      width:500,
+      height:300,
+    };
+
+    // Create plot
+    Plotly.newPlot('grid1', [trace], layout);
+  }
+
+  // Sample data
+  var data1 = [
+    [0.46875, 0.541666667, 0.25, 0.568005952, 0.645833333, 0, 0, 0, 0.177083333, 0, 0, 0, 0, 0, 0, 0],
+    [0.433333333, 0.537037037, 0.324074074, 0.583333333, 0.444444444, 0, 0, 0, 0.37962963, 0.471296296, 0.111111111, 0, 0, 0.111111111, 0, 0.222222222],
+    [0.581922399, 0.727601411, 0.417592593, 0.518518519, 0.673875661, 0.111111111, 0, 0, 0.363227513, 0.157407407, 0, 0, 0, 0.325925926, 0.266666667, 0.378306878],
+    [0.639285714, 0.716666667, 0, 0.392857143, 0.68452381, 0, 0, 0, 0.327380952, 0, 0, 0, 0, 0, 0, 0.202380952],
+    [0.646031746, 0.704861111, 0.368055556, 0.451388889, 0.59375, 0, 0, 0, 0.333333333, 0.25, 0, 0, 0, 0, 0, 0.159722222],
+    [0.509615385, 0.597435897, 0.076923077, 0.406410256, 0.357051282, 0, 0, 0, 0.153846154, 0, 0, 0, 0, 0, 0, 0.176282051],
+  ];
+
+  // Create grid plot
+  createGridPlot1(data1);
+
+</script>
+
+</body>
+</html>

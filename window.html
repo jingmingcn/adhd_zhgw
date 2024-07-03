@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts 示例</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+    <!-- 引入 ECharts 导出组件 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-gl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-liquidfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-wordsCloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-globe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-leaflet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-leaflet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts-echarts-extensions.min.js"></script>
+</head>
+<body>
+    <!-- 使用一个 div 元素作为容器来放置图表 -->
+    <div id="chart" style="width: 800px; height: 400px;"></div>
+
+    <!-- JavaScript 代码 -->
+    <script type="text/javascript">
+        // 初始化 ECharts 实例
+        var chartDom = document.getElementById('chart');
+        var myChart = echarts.init(chartDom);
+
+        // 模拟时间序列数据
+        var timeSeries1 = [];
+        var timeSeries2 = [];
+        for (var i = 0; i < 80; i++) {
+            timeSeries1.push(Math.sin(i * 0.1) * 10 + 50); // 示例数据1
+            timeSeries2.push(Math.cos(i * 0.1) * 10 + 50); // 示例数据2
+        }
+
+        // 绘制折线图
+        var option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                data: Array.from({ length: 75 }, (_, i) => i), // 时间序列的横坐标
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value'
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {} // 添加保存图片功能
+                }
+            },
+            series: [{
+                data: timeSeries1,
+                type: 'line',
+                smooth: true,
+                symbol: 'none', // 关闭数据点
+            }, {
+                data: timeSeries2,
+                type: 'line',
+                smooth: true,
+                symbol: 'none', // 关闭数据点
+                markArea: {
+                    itemStyle: {
+                        color: 'rgba(255, 173, 177, 0.4)'
+                    },
+                    data: [
+                        [{
+                            name: "Window 1",
+                            xAxis: '10', // 区域起点
+                        }, {
+                            xAxis: '20', // 区域终点
+                        }],
+                        [
+                            {
+                                name: 'Window 2',
+                                xAxis: '25',
+                            },
+                            {
+                                xAxis: '35',
+                            }
+                        ],
+                        [
+                            {
+                                name: 'Window 3',
+                                xAxis: '40',
+                            },
+                            {
+                                xAxis: '50',
+                            }
+                        ],
+                        [
+                            {
+                                name: 'Window 4',
+                                xAxis: '55',
+                            },
+                            {
+                                xAxis: '65',
+                            }
+                        ],
+                    ]
+                }
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart Comparison</title>
+    <!-- 引入 Plotly 的 CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- 在这里创建一个 div 用于放置绘制的图表 -->
+<div id="plot"></div>
+
+<script>
+    function plot() {
+        var trace1 = {
+            type: "scatter",
+            mode: "lines",
+            name: 'ASD',
+            y: [0.003574892, 0.001512545, 0.006081404, 0.003330411, 0.000181748, 0.001065534, 0.004800145, 0.004047811, 0.005882213, 0.001272281, 0.005496845, 0.003172061, 0.001691275, 0.000609047, 0.002137544, 0.003915764],
+            line: {color: '#cf1717'}
+        };
+
+        var trace2 = {
+            type: "scatter",
+            mode: "lines",
+            name: 'TDC',
+            y: [0.025212732, 0.032779562, 0.003039664, 0.005877771, 0.001226728, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.011197922],
+            line: {color: '#01b940'}
+        };
+
+        var data = [trace1, trace2];
+
+        var layout = {
+            title: 'Betweenness centrality',
+            xaxis: {title: 'Index'},
+            yaxis: {title: 'Value'},
+            width: 500,
+            height: 400
+        };
+
+        Plotly.newPlot('plot', data, layout);
+    }
+
+    // 页面加载完成后调用 plot 函数来绘制图表
+    window.onload = plot;
+</script>
+</body>
+</html>

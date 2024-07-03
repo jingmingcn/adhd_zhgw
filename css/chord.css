@@ -1,0 +1,138 @@
+/*body {*/
+/*    font-family: "Helvetica Neue", "Roboto", sans-serif;*/
+/*    font-size: 12px;*/
+/*    background-color: #33333f;*/
+/*    margin: 0 auto 0 auto;*/
+/*    padding: 0;*/
+/*    width: 840px;*/
+/*}*/
+.allcontent {
+    background-color: white;
+}
+.box {
+    display: block;
+    /*background-color: #f0f0fb;*/
+}
+.subbox {
+    padding: 0em 1em;
+    width: 250px;
+}
+.header {
+    font-size: 11pt;
+    background-color: #d0d0e5;
+}
+/*input {*/
+/*    font-family: "Helvetica Neue", "Roboto", sans-serif;*/
+/*}*/
+/*select {*/
+/*    font-family: "Helvetica Neue", "Roboto", sans-serif;*/
+/*}*/
+#freqrange {
+    background-color: #f0f0fb;
+}
+#circle circle {
+    fill: none;
+    pointer-events: all;
+}
+.circlechart {
+    margin: 0 auto 0 auto;
+    /*width: 700px;*/
+}
+.barchart {
+    margin-left: 30px;
+}
+path.chord {
+    stroke: #000;
+    stroke-width: .25px;
+    transition: opacity 0.2s;
+}
+#circle:hover path.fade {
+    opacity: 0.075;
+}
+
+.bar {
+    fill: darkgray;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis {
+    font-family: "Helvetica Neue", "Roboto", sans-serif;
+    font-size: 11px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: darkgray;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: "Helvetica Neue", "Roboto", sans-serif;
+    font-size: 11px;
+    color: darkgray;
+}
+
+.x.axis path {
+    display: none;
+}
+
+/* fromhttp://bl.ocks.org/Caged/6476579 */
+/* Creates a small triangle extender for the tooltip */
+
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+.fd-zone {
+    position: relative;
+    overflow: hidden;
+    width: 15em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.fd-file {
+    opacity: 0;
+    font-size: 118px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    font-family: sans-serif;
+}
+
+.fd-zone.over { border-color: maroon; background: #eee; }

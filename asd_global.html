@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Line Chart Comparison</title>
+  <!-- 引入 Plotly 的 CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- 在这里创建一个 div 用于放置绘制的图表 -->
+<div id="plot"></div>
+
+<script>
+  function plot() {
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'ASD',
+      y:[
+        0.82023988,
+        0.88195902,
+        0.672023988,
+        0.825424788,
+        0.92043978,
+        0.931834083,
+        0.701674163,
+        0.672613693,
+        0.635614693,
+        0.3290569,
+        0.871764118,
+        0.881734133,
+        0.829085457,
+        0.444167916,
+        0.570632184,
+        0.68155922
+      ],
+
+      line: {color: '#446ae7'}
+    };
+
+    var trace2 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'TDC',
+      y:[
+        0.232065991,
+        0.244508709,
+        0.037980296,
+        0.148200483,
+        0.167248876,
+        0.000149925,
+        0,
+        0,
+        0.03300564,
+        0.006821589,
+        0.000149925,
+        0,
+        0,
+        0.002548726,
+        0.0011994,
+        0.042328836
+      ],
+
+      line: {color: '#ab8cee'}
+    };
+
+    var data = [trace1, trace2];
+
+    var layout = {
+      title: 'Global efficiency',
+      xaxis: {title: 'Index'},
+      yaxis: {title: 'Value'},
+      width: 500,
+      height: 400
+    };
+
+    Plotly.newPlot('plot', data, layout);
+  }
+
+  // 页面加载完成后调用 plot 函数来绘制图表
+  window.onload = plot;
+</script>
+</body>
+</html>

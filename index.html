@@ -1,0 +1,444 @@
+﻿<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>Interface</title>
+<!--116功能区 扫描172次-->
+<!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link type="text/css" rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+
+
+<!-- CSS
+––––––––––––––––––––––––––––––––––––––––––––––––––-->
+<!--<link type="text/css" rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<link type="text/css" rel="stylesheet" href="css/w3.css">
+<!--<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">-->
+<!--<link rel="icon" href="/favicon.ico" type="image/x-icon">-->
+
+<!--  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+  <link rel="stylesheet" type="text/css" href="css/brain2_line.css">
+
+<!--    chord-->
+    <link rel="stylesheet" href="css/chord.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+
+    <!--Load D3-->
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+    <!--Load jQuery for slider controls-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!--Load math.js for matrix manipulation-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script>
+    <!--for tip --> <!--no longer linked from website - now in depends -->
+    <script src="js/chord/d3-tip.js"></script>
+    <!--for fileupload-->
+    <script src="js/chord/filedrop-min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+      .grid-item {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        text-align: center;
+        line-height: 50px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    </style>
+</head>
+
+<body id="body">
+<div class="page-container">
+  <div class="app-container">
+    <div class="panel-container">
+        <!-- <div id="list" class="ew-resize panel-container-vertical panel-left"> -->
+          <div id="list" class="ew-resize panel-left">
+            <div id="tractlist-with-title"
+                 class="w3-container title-and-content panel-left">
+
+                <div id="list-title" class="title">
+                    <h2>List</h2>
+                </div>
+
+                <div>
+                    <!--                    <div>DatasetSelect</div>-->
+                    <!--                        <div> <select id="select-view" >-->
+                    <!--                                <option value="ADHD">ADHD</option>-->
+                    <!--                                <option value="Other">Other</option>-->
+                    <!--                            </select>-->
+                    <!--                        </div>-->
+                    <div class="Menu-title">Dataset selection</div>
+                    <div>Dataset</div>
+                    <div> <select>
+                        <option value="ADHDf">ADHD</option>
+                        <option value="ASDf">ASD</option>
+                    </select>
+                    </div>
+                    <div>Patient</div>
+                    <div> <select>
+                        <option value="ADHD1">ADHD No.1</option>
+                    </select>
+                    </div>
+                    <div>Control group</div>
+                    <div> <select>
+                        <option value="TDC1">TDC No.1</option>
+                    </select>
+                    </div>
+
+                    <div>Frame of Ref.</div>
+                    <div> <select>
+                        <option value="ADHD">ADHD</option>
+                    </select>
+                    </div>
+
+                    <div>Window Size</div>
+                    <input type="range" min="0" max="100" value="20"/>20
+                    <div>Window Step</div>
+                    <input type="range" min="0" max="100" value="10"/>10
+                    <div>Filter</div>
+                    <input type="range" min="0" max="100" value="16"/>16
+                    <div>Threshold</div>
+                    <input type="range" min="-1" max="1" value="0.5"/>0.5
+
+                    <div class="Menu-title">Chord selection</div>
+                    <div>Chord Filter Threshold</div>
+                    <div id="slider"></div>
+                    <input type="text" id="minValue">
+                    <input type="text" id="maxValue">
+                    <div>Data selection</div>
+                    <div> <select>
+                        <option value="ADHD1">ADHD No.1</option>
+                    </select>
+                    </div>
+
+                    <div class="Menu-title">Layout Preferences</div>
+                    <input type="checkbox" id="toggle">
+                    <label for="toggle" style="color: #5268f9">Toggle Label</label>
+                    <div>Force Charge</div>
+                    <input type="range" min="-9" max="-1" value="-2"/>-1
+                </div>
+
+                <div class="Menu-title">Feature selection</div>
+                <input type="checkbox" id="toggle">
+                <label for="toggle">Local efficiency</label>
+                <label for="toggle">Global efficiency</label>
+
+
+                <div class="Menu-title">Area List</div>
+                <div class="tractlist-explanation">
+                    <small>Rank according to regional discriminant strength</small>
+                </div>
+                <div id="tractlist" class="content scrollable">
+                    <!-- <div id="selectAllBox">
+                        <input type="checkbox" id="selectAllTracts">
+                        <label for="selectAllTracts">All Area</label>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>
+
+      <div id="t-and-c" class="ew-resize panel-container-vertical scrollable">
+
+        <div id="container-list-3d"
+             class="panel-top panel-container ns-resize">
+
+            <div id="container-list-3d-table"
+             class="w3-container title-and-content panel-right">
+              <div id="plots-title" class="title">
+                <h2>Colorwall</h2>
+              </div>
+                <div class="tractlist-explanation">
+                    <small>Dynamic graph comparison</small>
+                </div>
+              <div id="a"></div>
+              <div id="plots-and-controls" class="content scrollable">
+                <div id="brain_line2"></div>
+                <div id="svg_bottom"></div>
+                <div id="brain2_line_GuiContainer" class="gui-container" style="display: none"></div>
+              </div>
+            </div>
+        </div>
+
+          <div id="table-with-title"
+             class="w3-container title-and-content panel-bottom scrollable">
+          <div id="table-title" class="title"><h2>PLOT</h2></div>
+              <div class="tractlist-explanation">
+                  <small>Comparison of signal changes in brain regions</small>
+              </div>
+          <div id="plot" class="content"></div>
+          <div id="grid" ></div>
+          <div id="grid1" ></div>
+              <!-- <div class="resizable-box"></div> -->
+          </div>
+
+      </div>
+
+        <div id="an-ch" class="panel-container-vertical">
+
+      <div id="container-anatomy"
+           class="w3-container title-and-content panel-top ns-resize">
+        <div id="test-title" class="title"><h2>Anatomy</h2></div>
+          <div class="tractlist-explanation">
+              <small>Rotate, zoom, and view connectivity</small>
+          </div>
+        <div class="contenttest" style="width: 800px; height: 400px;">
+          <div class="flex-container">
+              <div id="connectome-plot" class="flex-item">Rotate</div>
+            <div id="brain-right" class="flex-item">Right</div>
+            <div id="brain-front" class="flex-item">Front</div>
+            <div id="brain-back" class="flex-item">Back</div>
+          </div>
+        </div>
+
+        <div class="ni_learn">
+<!--          <select id="select-view" >-->
+<!--            <option value="left">view: Left</option>-->
+<!--            <option value="right">view: Right</option>-->
+<!--            <option value="front">view: Front</option>-->
+<!--            <option value="back">view: Back</option>-->
+<!--            <option value="top">view: Top</option>-->
+<!--            <option value="bottom">view: Bottom</option>-->
+<!--            <option value="custom">view: -</option>-->
+<!--          </select>-->
+<!--          <input id="opacity-range" type="range" min="0" max="100" value="30"/>-->
+        </div>
+        <div class="view">
+<!-- 注释部分为联动列表 -->
+          <!--          <div id="arealist" class="content scrollable">-->
+          <!--            <div id="wu">-->
+          <!--              <input type="checkbox" id="selectAllArea">-->
+          <!--              <label for="selectAllArea">All Area</label>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <div id="array-select" class="contenttest" style="display: none"></div>
+        </div>
+      </div>
+
+        <div class="w3-container title-and-content panel-bottom">
+            <div id="table-" class="title"><h2>CHORD</h2></div>
+            <div class="tractlist-explanation">
+                <small>Understand the strength of the association</small>
+            </div>
+            <div style="width:100%; height: 100%;">
+              <iframe id="chordFrame" src="chord.html" width="100%" height="100%" style="border: 0;"></iframe>
+            </div>
+            <!-- <div class="resizable-box"></div> 
+            chord.html -->
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+    // Function to create grid plot
+    function createGridPlot(data) {
+      // Define colorscale for heatmap
+      var colorscale = [
+        [0, '#FFFFFF'], // white
+        [1, '#0000FF']  // blue
+      ];
+  
+      // Create trace for heatmap
+      var trace = {
+        z: data,
+        type: 'heatmap',
+        colorscale: colorscale,
+        hoverongaps: false
+      };
+  
+      // Define layout for plot
+      var layout = {
+        title: 'ASD',
+        hovermode: 'closest',
+        width:500,
+        height:300,
+      };
+  
+      // Create plot
+      Plotly.newPlot('grid', [trace], layout);
+    }
+  
+    // Sample data
+    var data = [
+      [0.982366071, 1, 0.912746975, 0.996354167, 0.996354167, 1, 0.97120952, 0.973435939, 0.948866758, 0.917295725, 1, 0.984738439, 0.969352522, 0.925595238, 0.908748196, 0.89683667],
+      [0.954901063, 0.966768716, 0.876990756, 0.94306944, 0.985021786, 0.986928105, 0.863241697, 0.914686394, 0.903440233, 0.787037037, 1, 0.983283406, 0.955362738, 0.835229277, 0.90088538, 0.881105777],
+      [0.97580223, 0.991966231, 0.921412302, 0.963138033, 0.986065723, 0.966523899, 0.912959571, 0.897734827, 0.907752124, 0.720061728, 0.975, 0.975677114, 0.984208384, 0.814770723, 0.816931217, 0.916968988],
+      [0.978937729, 0.98403977, 0.92762991, 0.978247943, 1, 1, 0.894132653, 0.93425067, 0.880612245, 0.727380952, 0.93351133, 0.97091361, 0.97985348, 0.78452381, 0.827267574, 0.93690833],
+      [0.89376979, 0.979835376, 0.893355778, 0.940121107, 0.981197848, 0.986125912, 0.886591765, 0.900988251, 0.892581183, 0.852777778, 0.942492821, 0.935058706, 0.950850569, 0.886483193, 0.906864273, 0.918101021],
+      [0.853089448, 0.893600288, 0.800044293, 0.90858266, 0.911476912, 0.927841515, 0.740869258, 0.713133661, 0.80483128, 0.430128205, 0.901572797, 0.919327568, 0.8255264, 0.684935897, 0.852770734, 0.846193337]
+    ];
+  
+    // Create grid plot
+    createGridPlot(data);
+  
+    // Function to create grid plot
+    function createGridPlot1(data) {
+      // Define colorscale for heatmap
+      var colorscale = [
+        [0, '#FFFFFF'], // white
+        [1, '#0000FF']  // blue
+      ];
+  
+      // Create trace for heatmap
+      var trace = {
+        z: data,
+        type: 'heatmap',
+        colorscale: colorscale,
+        hoverongaps: false
+      };
+  
+      // Define layout for plot
+      var layout = {
+        title: 'TDC',
+        hovermode: 'closest',
+        width:500,
+        height:300,
+      };
+  
+      // Create plot
+      Plotly.newPlot('grid1', [trace], layout);
+    }
+  
+    // Sample data
+    var data1 = [
+      [0.46875, 0.541666667, 0.25, 0.568005952, 0.645833333, 0, 0, 0, 0.177083333, 0, 0, 0, 0, 0, 0, 0],
+      [0.433333333, 0.537037037, 0.324074074, 0.583333333, 0.444444444, 0, 0, 0, 0.37962963, 0.471296296, 0.111111111, 0, 0, 0.111111111, 0, 0.222222222],
+      [0.581922399, 0.727601411, 0.417592593, 0.518518519, 0.673875661, 0.111111111, 0, 0, 0.363227513, 0.157407407, 0, 0, 0, 0.325925926, 0.266666667, 0.378306878],
+      [0.639285714, 0.716666667, 0, 0.392857143, 0.68452381, 0, 0, 0, 0.327380952, 0, 0, 0, 0, 0, 0, 0.202380952],
+      [0.646031746, 0.704861111, 0.368055556, 0.451388889, 0.59375, 0, 0, 0, 0.333333333, 0.25, 0, 0, 0, 0, 0, 0.159722222],
+      [0.509615385, 0.597435897, 0.076923077, 0.406410256, 0.357051282, 0, 0, 0, 0.153846154, 0, 0, 0, 0, 0, 0, 0.176282051],
+    ];
+  
+    // Create grid plot
+    createGridPlot1(data1);
+  
+  </script>
+<!--chord-->
+<!--<script src="js/chord/makecontrols.js"></script>-->
+<!--<script src="js/chord/plotchords.js"></script>-->
+<!--<script src="js/chord/bar.js"></script>-->
+<!--<script src="js/chord/filedroppage.js"></script>-->
+<!--<script src="js/chord/histogram.js"></script>-->
+
+
+<!--<script>-->
+<!--    // Load files and start-->
+<!--    d3_queue.queue()-->
+<!--        .defer(d3.csv, "data/labels.csv")-->
+<!--        .defer(d3.json, "data/ADHD1.txt")-->
+<!--        .await(initializeRender);-->
+<!--</script>-->
+
+<!-- JS Libraries -->
+<!--<script type="text/javascript" src="//d3js.org/d3-queue.v2.min.js"></script>-->
+<script type="text/javascript" src="js/third-party/stats.min.js"></script>
+<script type="text/javascript" src="js/third-party/three.min.js"></script>
+<!--<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>-->
+<!--<script type="text/javascript"-->
+<!--    src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+<!--<script type="text/javascript"-->
+<!--    src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+<script type="text/javascript" src="js/third-party/dat.gui.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/dat-gui-afq.css">
+<script type="text/javascript" src="js/third-party/qs.js"></script>
+<script type="text/javascript" src="js/third-party/URI.js"></script>
+
+<!-- THREE.js add ons-->
+
+<script type="text/javascript" src="js/third-party/Projector.js"></script>
+<script type="text/javascript" src="js/third-party/threex.domevent.js"></script>
+<script type="text/javascript" src="js/third-party/OrbitControls.js"></script>
+<script type="text/javascript" src="js/third-party/OBJLoader.js"></script>
+<script type="text/javascript" src="js/third-party/QuickHull.js"></script>
+<script type="text/javascript" src="js/third-party/ConvexGeometry.js"></script>
+
+<!--custom JS code -->
+
+<script type="text/javascript" src="js/afqb.js"></script>
+<script type="text/javascript" src="js/save-settings.js"></script>
+<script type="text/javascript" src="js/tract-colors.js"></script>
+<script type="text/javascript" src="js/plots.js"></script>
+<script type="text/javascript" src="js/anatomy.js"></script>
+<script type="text/javascript" src="js/table.js"></script>
+<script type="text/javascript" src="js/resizing.js"></script>
+
+<!--ni_learn-->
+<script type="text/javascript" src="js/ni_learn/plotly.js"></script>
+<script type="text/javascript" src="js/ni_learn/function.js"></script>
+<script type="text/javascript" src="js/ni_learn/array.js"></script>
+<script type="text/javascript" src="js/ni_learn/ready.js"></script>
+<script type="text/javascript" src="js/ni_learn/slice.js"></script>
+
+<!-- brain2_line-->
+<!--<script src="js/colorwall/jquery-3.1.1.min.js" charset="utf-8" ></script>-->
+<!--<script src="js/colorwall/d3.v3.min.js" charset="utf-8" ></script>-->
+<script type="text/javascript" src="js/colorwall/d3.v4.js"></script>
+<script type="text/javascript" src="js/colorwall/d3-legend.js"  charset="utf-8"></script>
+<script type="text/javascript" src="js/colorwall/d3-scale-chromatic.v1.1.js"></script>
+<script type="text/javascript" src="js/colorwall/dat.gui.js"></script>
+<script type="text/javascript" src="js/colorwall/netClustering.js"></script>
+<script type="text/javascript" src="js/colorwall/forceInABox.js"></script>
+<script type="text/javascript" src="js/colorwall/colorbrewer.js"></script>
+<script type="text/javascript" src="js/colorwall/colorbar.js"></script>
+<script type="text/javascript" src="js/colorwall/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/colorwall/bootbox.min.js"></script>
+<!--<script type="text/javascript" src="js/colorwall/brain2_line.js" charset="utf-8"></script>-->
+
+<!--自定义-->
+<script type="text/javascript" src="js/interact.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
+
+<!--brain2_line_2-->
+<script src="js/sample/jstat.min.js"></script>
+<script src="js/sample/math.min.js"></script>
+<script src="js/sample/levenshteinDistance.js"></script>
+<!--<script src="js/sample/brain2_line2.js"></script>-->
+
+<script>
+    var slider = document.getElementById('slider');
+    var minValueInput = document.getElementById('minValue');
+    var maxValueInput = document.getElementById('maxValue');
+
+    noUiSlider.create(slider, {
+        start: [0.7424,0.9975],
+        step: 0.0001,
+        range: {
+            'min': -1,
+            'max': 1
+        }
+    });
+
+    // 监听滑块值改变事件
+    slider.noUiSlider.on('update', function (values, handle) {
+        // 更新输入框值
+        minValueInput.value = values[0];
+        maxValueInput.value = values[1];
+        document.getElementById('chordFrame').contentWindow.threshChords(values)
+    });
+
+    // 监听输入框值改变事件
+    minValueInput.addEventListener('change', function () {
+        slider.noUiSlider.set([this.value, null]);
+        document.getElementById('chordFrame').contentWindow.threshChords(values)
+    });
+
+    maxValueInput.addEventListener('change', function () {
+        slider.noUiSlider.set([null, this.value]);
+        document.getElementById('chordFrame').contentWindow.threshChords(values)
+    });
+</script>
+
+</body>
+</html>
