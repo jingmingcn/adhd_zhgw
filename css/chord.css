@@ -115,7 +115,7 @@ path.chord {
 
 .fd-zone {
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 15em;
     margin: 0 auto;
     text-align: center;

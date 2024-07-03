@@ -193,7 +193,7 @@
           <div class="tractlist-explanation">
               <small>Rotate, zoom, and view connectivity</small>
           </div>
-        <div class="contenttest">
+        <div class="contenttest" style="width: 800px; height: 400px;">
           <div class="flex-container">
               <div id="connectome-plot" class="flex-item">Rotate</div>
             <div id="brain-right" class="flex-item">Right</div>
@@ -226,7 +226,7 @@
         </div>
       </div>
 
-        <div class="w3-container title-and-content panel-bottom" style="height: 50vh;">
+        <div class="w3-container title-and-content panel-bottom">
             <div id="table-" class="title"><h2>CHORD</h2></div>
             <div class="tractlist-explanation">
                 <small>Understand the strength of the association</small>
@@ -425,8 +425,17 @@
         // 更新输入框值
         minValueInput.value = values[0];
         maxValueInput.value = values[1];
+    });
+
+
+    slider.noUiSlider.on('change', function (values, handle) {
+        // 更新输入框值
+        minValueInput.value = values[0];
+        maxValueInput.value = values[1];
         document.getElementById('chordFrame').contentWindow.threshChords(values)
     });
+
+    
 
     // 监听输入框值改变事件
     minValueInput.addEventListener('change', function () {

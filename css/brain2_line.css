@@ -6,7 +6,7 @@ html body{
     overflow: hidden;
 }
 #table-with-title{
-    height: 400px; /* 设置容器的固定高度 */
+    height: 50vh; /* 设置容器的固定高度 */
     overflow-y: auto; /* 启用垂直滚动条 */
 }
 .node {

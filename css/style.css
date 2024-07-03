@@ -56,8 +56,8 @@
 .flex-container {
   display: -webkit-flex;
   display: flex;
-  width: 750px;
-  height: 121px;
+  /* width: 750px; */
+  /* height: 121px; */
   align-items:center;
   flex-wrap: wrap;
 }
@@ -165,7 +165,7 @@ h2 {
 .panel-container {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
 }
 
@@ -232,22 +232,22 @@ h2 {
 }
 /*colorwall部分长宽*/
 #container-list-3d-table {
-  width: 45%;
-  height: 550px;
+  width: 40%;
+  height: 50vh;
 }
 
 #container-list {
   width: 250px;
-  height: 740px;
+  height: 50vh;
 }
 
 #tractlist-with-title {
-  width: 10%;
+  /* width: 10%; */
   flex: 0 1 auto;
   height: 100%;
 }
 #t-and-c{
-  width: 45%;
+  min-width: 40%;
   height: auto;
 }
 
@@ -310,7 +310,7 @@ h2 {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: absolute;
   z-index: -1;
 }
